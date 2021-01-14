@@ -1,4 +1,4 @@
-#Get's video's likes, dislikes, views, and comments.
+#Get's video's views
 
 '''
 
@@ -74,10 +74,6 @@ SAMPLE JSON RESPONSE :
    },
    "statistics": {
     "viewCount": "17843575",
-    "likeCount": "251916",
-    "dislikeCount": "4971",
-    "favoriteCount": "0",
-    "commentCount": "8008"
    }
   }
  ]
@@ -99,7 +95,7 @@ VIDEO_ID = os.getenv("VIDEO_ID")
 API_KEY = os.getenv("API_KEY")
 scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
 
-def getinfo():
+def getdata():
 	resp = {}
 	url = "https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=%s&key=%s"%(VIDEO_ID,API_KEY)
 	#urllib.parse.urlencode(url)
@@ -116,15 +112,12 @@ def getinfo():
 	resp['title'] = title
 	resp['description'] = desc
 	resp['views'] = stats['viewCount']
-	resp['likes'] = stats['likeCount']
-	resp['dislikes'] = stats['dislikeCount']
-	resp['comments'] = stats['commentCount']
 	print(resp)
 	return resp
 
 if __name__=="__main__":
 	getinfo()
 
-#getinfo()
+
 
 
